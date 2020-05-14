@@ -1,6 +1,11 @@
+<p align="center"><img src="https://raw.githubusercontent.com/josueggh/map-visualisation/master/berlin-stations/example.jpg
+" /></p>
+
 # GMAP JS API with deck.gl Scatterplot Layer
 
 This example show the use of [Deck.gl](https://deck.gl) and Google Maps, the code consumes a collection of Berlin's Stations (bus, train, etc) and display all in a single Map.
+
+You can see a live demo on [https://berlin-station.web.app/](https://berlin-station.web.app/)
 
 ## Running the app
 
