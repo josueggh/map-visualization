@@ -1,5 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/josueggh/map-visualisation/master/berlin-stations/example.jpg
-" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/josueggh/map-visualisation/master/berlin-stations/example.jpg"/></p>
 
 # GMAP JS API with deck.gl Scatterplot Layer
 
