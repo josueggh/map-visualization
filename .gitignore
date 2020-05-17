@@ -1,6 +1,6 @@
 .idea/
 dist/
-my-utils/
 .DS_Store
 node_modules/
+my-utils
 package-lock.json
