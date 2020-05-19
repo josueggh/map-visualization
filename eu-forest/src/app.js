@@ -7,7 +7,7 @@ const YOUR_API_KEY = '';
 function getLayer() {
   const LAYER = new ScatterplotLayer({
     id: 'scatterplot-layer',
-    data: `https://map-visualisations.storage.googleapis.com/country_austria.json`,
+    data: `https://map-visualisations.storage.googleapis.com/country_all.json`,
     pickable: true,
     opacity: 0.8,
     stroked: true,
@@ -17,7 +17,7 @@ function getLayer() {
     radiusMaxPixels: 100,
     lineWidthMinPixels: 1,
     getPosition: d => [d.lng, d.lat] ,
-    getRadius: d => 8,
+    getRadius: d => 10,
     getFillColor: d => colors[d.specie],
     getLineColor: d => [30, 30, 30],
   });
@@ -27,10 +27,10 @@ function getLayer() {
 async function init() {
   await loadScript();
   const MAP = new google.maps.Map( document.getElementById('map'), {
-    center:{ lat: 47.604573, lng: 14.350896},
-    zoom: 7,
-    minZoom: 7,
-    maxZoom: 12,
+    center:{ lat: 50.954573, lng: 14.350896},
+    zoom: 3,
+    minZoom: 3,
+    maxZoom: 11,
     mapTypeId: 'roadmap',
     mapTypeControl: false,
     streetViewControl: false,
