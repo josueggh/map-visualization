@@ -1,0 +1,41 @@
+body{
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+}
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 88%;
+}
+#countries {
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow-x: auto;
+  position: absolute;
+  padding: 1% 2%;
+  width: 96%;
+  height: 8%;
+  bottom: 0;
+  background: #f4f4f4;
+  -webkit-box-shadow: inset 0px 2px 11px 0px rgba(0,0,0,0.35);
+  -moz-box-shadow: inset 0px 2px 11px 0px rgba(0,0,0,0.35);
+  box-shadow: inset 0px 2px 11px 0px rgba(0,0,0,0.35);
+}
+#countries::-webkit-scrollbar {
+  display: none;
+}
+#countries .country {
+  cursor: pointer;
+  flex: 0 0 auto;
+  background: white;
+  border-radius: 5px;
+  margin-left: 10px;
+  min-width: 100px;
+  text-align: center;
+  padding: 9px;
+  border: 1px solid #aaa;
+}
