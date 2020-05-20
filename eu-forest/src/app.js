@@ -55,9 +55,9 @@ function changeLayer(){
 }
 
 function appendCountry(country){
-  let div = document.createElement("div");
+  let div = document.createElement("button");
   div.classList.add('country');
-  div.textContent = country;
+  div.innerHTML = `<span>${country}</span>`;
   div.addEventListener('click', changeLayer);
   COUNTRIES.appendChild(div);
 }
