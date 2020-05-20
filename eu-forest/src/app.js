@@ -10,7 +10,7 @@ const YOUR_API_KEY = '',
       COUNTRIES = document.getElementById('countries'),
       MAP       = document.getElementById('map');
 
-let deckGL_overlay;
+let deckGL_overlay , GMAP;
 
 function getLayer(layer = 'all'){
   return  new ScatterplotLayer({
@@ -34,7 +34,7 @@ function getLayer(layer = 'all'){
 async function init() {
   await loadScript();
 
-  const GMAP = new google.maps.Map( MAP, {
+  GMAP = new google.maps.Map( MAP, {
     center:{ lat: 55.954573, lng: 14.350896},
     zoom: 3.6,
     minZoom: 3.5,
@@ -45,19 +45,31 @@ async function init() {
     styles: map_styles
   });
 
+  document.querySelector('button').classList.add('active');
   deckGL_overlay = new GoogleMapsOverlay();
   deckGL_overlay.setMap(GMAP);
   deckGL_overlay.setProps({ layers: [ getLayer() ]});
 }
 
 function changeLayer(){
-
+  document.querySelectorAll('button.active').forEach( button => {
+    button.classList.remove('active');
+  });
+  this.classList.add('active');
+  let layer_id = this.textContent.toLowerCase().replace(/ /g,'')
+  deckGL_overlay.setProps({ layers: [ getLayer(layer_id)]});
+  console.log({lat: this.dataset.lat, lng : this.dataset.lng});
+  GMAP.setCenter({lat: +this.dataset.lat, lng : +this.dataset.lng});
+  GMAP.setZoom(+this.dataset.zoom);
 }
 
 function appendCountry(country){
   let div = document.createElement("button");
   div.classList.add('country');
-  div.innerHTML = `<span>${country}</span>`;
+  div.setAttribute('data-lat' , country.lat);
+  div.setAttribute('data-lng' , country.lng);
+  div.setAttribute('data-zoom' , country.zoom);
+  div.innerHTML = `<span>${country.name}</span>`;
   div.addEventListener('click', changeLayer);
   COUNTRIES.appendChild(div);
 }
