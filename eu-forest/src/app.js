@@ -12,10 +12,15 @@ const YOUR_API_KEY = '',
 
 let deckGL_overlay , GMAP;
 
-function getLayer(layer = 'all'){
-  return  new ScatterplotLayer({
+async function getLayer(layer = 'all'){
+  document.querySelector("body").classList.remove("loaded");
+  let request = await fetch(`https://dataset-euforest.storage.googleapis.com/country_${layer}.json`);
+  let data = await request.json();
+  document.querySelector("body").classList.add("loaded");
+  //console.log(data);
+  return  await new ScatterplotLayer({
     id: 'scatterplot-layer',
-    data: `https://dataset-euforest.storage.googleapis.com/country_${layer}.json`,
+    data: data,
     pickable: true,
     opacity: 1,
     stroked: false,
@@ -48,16 +53,17 @@ async function init() {
   document.querySelector('button').classList.add('active');
   deckGL_overlay = new GoogleMapsOverlay();
   deckGL_overlay.setMap(GMAP);
-  deckGL_overlay.setProps({ layers: [ getLayer() ]});
+  deckGL_overlay.setProps({ layers: [ await getLayer() ]});
 }
 
-function changeLayer(){
+async function changeLayer(){
   document.querySelectorAll('button.active').forEach( button => {
     button.classList.remove('active');
   });
   this.classList.add('active');
-  let layer_id = this.textContent.toLowerCase().replace(/ /g,'')
-  deckGL_overlay.setProps({ layers: [ getLayer(layer_id)]});
+  let layer_id = this.textContent.toLowerCase().replace(/ /g,'');
+  let layer =  await getLayer(layer_id);
+  deckGL_overlay.setProps({ layers: [layer]});
   GMAP.setCenter({lat: +this.dataset.lat, lng : +this.dataset.lng});
   GMAP.setZoom(+this.dataset.zoom);
 }
