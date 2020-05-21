@@ -15,7 +15,7 @@ let deckGL_overlay , GMAP;
 function getLayer(layer = 'all'){
   return  new ScatterplotLayer({
     id: 'scatterplot-layer',
-    data: `https://map-visualisations.storage.googleapis.com/country_${layer}.json`,
+    data: `https://dataset-euforest.storage.googleapis.com/country_${layer}.json`,
     pickable: true,
     opacity: 1,
     stroked: false,
@@ -58,7 +58,6 @@ function changeLayer(){
   this.classList.add('active');
   let layer_id = this.textContent.toLowerCase().replace(/ /g,'')
   deckGL_overlay.setProps({ layers: [ getLayer(layer_id)]});
-  console.log({lat: this.dataset.lat, lng : this.dataset.lng});
   GMAP.setCenter({lat: +this.dataset.lat, lng : +this.dataset.lng});
   GMAP.setZoom(+this.dataset.zoom);
 }
